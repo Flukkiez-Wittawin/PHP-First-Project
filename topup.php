@@ -93,6 +93,14 @@ const Toast = Swal.mixin({
           text: 'โปรดใส่จำนวนเงิน',
         })
       }
+      else 
+      if (number < 10) {
+        Swal.fire({
+          icon: 'error',
+          title: 'แจ้งเตือน',
+          text: 'ขั้นต่ำ 10 บาท น้ะจ๊ะ',
+        })
+      }
       else
       {
         window.location.href = 'topup/promptpay.php?price_value=' + number;

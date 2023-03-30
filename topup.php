@@ -1,7 +1,10 @@
 <?php
+// ดึง navbar จากหน้าอื่นเข้ามา
 $variable =array(
   'navbar',
+
 );
+// ตรงนี้ ถ้ามีหน้าที่อยู่ในโฟลเดอร์ เดียวกัน จะดึงเข้ามา โดยใช้ foreach ในการสร้าง variable
 foreach ($variable as $include_function) {
   include 'bar/'.$include_function.'.php';
 };
@@ -24,13 +27,14 @@ foreach ($variable as $include_function) {
 
 
 <?php
+// เริ่ม session
 session_start();
 
-
+// เด้งออกไปหน้า login เมื่อยังไม่ login
 if(!isset($_SESSION['email'])) {
   header('location: login.php');
 }
-
+// แจ้งเตือนว่าเข้าสู่หน้าเติมเงิน
 echo "<script>
 const Toast = Swal.mixin({
     toast: true,
@@ -58,7 +62,7 @@ const Toast = Swal.mixin({
 
 </script>
 
-
+<!-- ปุ้มต่างๆ ที่จะเข้าหน้าเติมเงินต่างๆ -->
 <div class="form-wrapper">
     <form class="topup_form">
     <ul class='topup_ul'>
@@ -70,6 +74,8 @@ const Toast = Swal.mixin({
 </div>
 
 <script>
+  //  เมือคลิกที่ปุ่ม promtpay จะแสดง sweetalert2 ที่มีข้อความ
+  // ว่า ใส่จำนวนเงินที่ต้องการจะเติม
   document.getElementById('promptpay').addEventListener('click', function() {
 
   Swal.fire({
@@ -85,7 +91,7 @@ const Toast = Swal.mixin({
     showLoaderOnConfirm: true,
     allowOutsideClick: () => !Swal.isLoading(),
     preConfirm: (number) => {
-
+// ถ้าไม่ใส่จำนวนเงิน
       if (!number) {
         Swal.fire({
           icon: 'error',
@@ -94,6 +100,7 @@ const Toast = Swal.mixin({
         })
       }
       else 
+      // ถ้าจำนวนเงินน้อยกว่า 10
       if (number < 10) {
         Swal.fire({
           icon: 'error',
@@ -103,6 +110,7 @@ const Toast = Swal.mixin({
       }
       else
       {
+        // ถ้าถูกตามเงื่อนไขจะไปหน้าเติมเงิน
         window.location.href = 'topup/promptpay.php?price_value=' + number;
       }
     }

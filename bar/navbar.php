@@ -1,3 +1,5 @@
+<!-- ในส่วนีี้ คือ navbar ต่างๆ -->
+
 <link rel="stylesheet" type="text/css" href="style/navbar.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,7 +11,8 @@
   </a>
 </div>
   <ul>
-    <li><a href="index.php">หน้าหลัก</a></li>
+    <!-- เมื่อกดจะไปตามชื่อหน้า -->
+    <li><a href="index.php">หน้าหลัก</a></li> 
     <li><a href="topup.php">เติมเงิน</a></li>
     <li><a href="logout.php">Logout</a></li>
   </ul>

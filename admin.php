@@ -1,8 +1,10 @@
 <?php
+// ดึง navbar จากหน้าอื่นเข้ามา
 $variable =array(
   'navbar',
 
 );
+// ตรงนี้ ถ้ามีหน้าที่อยู่ในโฟลเดอร์ เดียวกัน จะดึงเข้ามา โดยใช้ foreach ในการสร้าง variable
 foreach ($variable as $include_function) {
   include 'bar/'.$include_function.'.php';
 };
@@ -23,6 +25,8 @@ foreach ($variable as $include_function) {
 </head>
 <body>
     <?php
+    // ดึง table จากหน้า admin_all_user_table.php
+
     include 'admin_controls/admin_all_user_table.php'
     ?>
     <style>

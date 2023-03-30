@@ -1,3 +1,4 @@
+<!-- ในส่วนนี้จะเป็น โปรไฟล์ ของ user ในอนาคต -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
 <?php
-include 'nav_profile.php';
+include '../nav_profile.php';
 ?>
 
 </body>

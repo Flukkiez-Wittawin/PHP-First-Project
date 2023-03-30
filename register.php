@@ -19,23 +19,8 @@
 
 </style>
 
-<!-- <form action="register.php" method="post">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email">
-    
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password">
-    
-    <label for="confirm_password">Confirm Password:</label>
-    <input type="password" name="confirm_password" id="confirm_password">
-    
-    <button type="submit" name="register">Register</button>
-</form> -->
-
 <script>
+  // ใช้ sweetalert2 ในการเป็ form หลักในการสมัคร
     Swal.fire({
   title: 'สมัครสมาชิก',
   html: `
@@ -64,13 +49,15 @@
 </script>
 
 <?php
+// ถ้ากดยืนยันการสมัคร
 if (isset($_POST['register'])) {
 
-    $name = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
+    $name = $_POST['username']; // ดึงข้อความจากช่อง username ของ form
+    $email = $_POST['email']; // ดึงข้อความจากช่อง email ของ form
+    $password = $_POST['password']; // ดึงข้อความจากช่อง password ของ form
+    $confirm_password = $_POST['confirm_password']; // ดึงข้อความจากช่อง confirm_password ของ form
     
+    // ถ้าไม่เติมลงในช่อง
     if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
       echo "<script>
               Swal.fire({
@@ -86,16 +73,16 @@ if (isset($_POST['register'])) {
             }, 1000);
             </script>";
     } else {
-
+// เชื่อม sql
       $conn = new mysqli("localhost", "root", "", "database");
     
-
+// เช็คว่า มีชื่อ หรือ email ซ้ำ หรือไม่
       $sql = "SELECT COUNT(*) AS count FROM users WHERE name = '$name' OR email = '$email'";
       $result = $conn->query($sql);
       $row = $result->fetch_assoc();
     
       if ($row['count'] > 0) {
-
+// ถ้ามี จะแสดง sweetalert2
         echo "<script>
                 Swal.fire({
                   icon: 'error',
@@ -112,16 +99,16 @@ if (isset($_POST['register'])) {
               
 
       } else {
-
+// เชื่อม sql
         $connection = mysqli_connect('localhost', 'root', '', 'database');
-
+// เปลี่ยน จากตัวอักษรเป็น hash
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
-
+// เพิ่มข้อมูลเข้า sql
         $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
         mysqli_query($connection, $query);
     
-
+// กลับไปหน้า login
         header("Location: login.php");
         exit();
         

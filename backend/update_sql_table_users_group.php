@@ -4,19 +4,22 @@
 
 <body>
 <?php
+// เชื่อมต่อ database
 $db = mysqli_connect('localhost', 'root', '', 'database');
 
 
-$id = $_GET['id'];
+$id = $_GET['id'];// เอาค่าของตัวแปรที่ส่งมา คือ ID
 
-$incolumntable = $_GET['group'];
+$incolumntable = $_GET['group'];// เอาค่าของตัวแปรที่ส่งมา คือ group
 
+// อัพเดท ค่า ว่า เป็น user หรือ admin ตาม id
 $query="UPDATE `users` SET `group` = '$incolumntable' WHERE `id` = '$id';
 ";
 $result = mysqli_query($db, $query);
 
 
 if  ($result) {
+  // ถ้า ไม่มีข้อผิดพลาด จะแสดงตามส่วนนี้
   echo "
 <script>
 let timerInterval
@@ -47,6 +50,7 @@ Swal.fire({
 }
 else 
 {
+  // ถ้า มีข้อผิดพลาด จะแสดงตามส่วนนี้
 echo "
 <script>
 let timerInterval

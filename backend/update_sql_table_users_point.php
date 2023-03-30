@@ -7,16 +7,18 @@
 $db = mysqli_connect('localhost', 'root', '', 'database');
 
 
-$id = $_GET['id'];
+$id = $_GET['id'];// เอาค่าของตัวแปรที่ส่งมา คือ ID
 
-$incolumntable = $_GET['incolumntable'];
-
+$incolumntable = $_GET['incolumntable'];// เอาค่าของตัวแปรที่ส่งมา คือ incolumntable หรือ point นั่นเอง
+// อัพเดท ค่า point ว่าจะเซ็ทเป็นเท่าไหร่
 $query="UPDATE database.users SET point = '$incolumntable' WHERE id = '$id';
 ";
 $result = mysqli_query($db, $query);
 mysqli_close($db);
 
 if  ($result) {
+    // ถ้า ไม่มีข้อผิดพลาด จะแสดงตามส่วนนี้
+
   echo "
 <script>
 let timerInterval
@@ -47,6 +49,8 @@ Swal.fire({
 }
 else 
 {
+    // ถ้า มีข้อผิดพลาด จะแสดงตามส่วนนี้
+
 echo "
 <script>
 let timerInterval

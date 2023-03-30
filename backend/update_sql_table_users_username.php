@@ -7,9 +7,9 @@
 $db = mysqli_connect('localhost', 'root', '', 'database');
 
 
-$id = $_GET['id'];
+$id = $_GET['id']; // เอาค่าของตัวแปรที่ส่งมา คือ ID
 
-$incolumntable = $_GET['name'];
+$incolumntable = $_GET['name']; // เอาค่าของตัวแปรที่ส่งมา คือ name
 
 $query="UPDATE `users` SET `name` = '$incolumntable' WHERE `id` = '$id';
 ";
@@ -17,6 +17,7 @@ $result = mysqli_query($db, $query);
 
 
 if  ($result) {
+  // ถ้า ไม่มีข้อผิดพลาด จะแสดงตามส่วนนี้
   echo "
 <script>
 let timerInterval
@@ -47,6 +48,8 @@ Swal.fire({
 }
 else 
 {
+    // ถ้า มีข้อผิดพลาด จะแสดงตามส่วนนี้
+
 echo "
 <script>
 let timerInterval

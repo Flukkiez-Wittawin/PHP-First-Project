@@ -2,7 +2,7 @@
 <center>
 
 
-  
+  <!-- ในส่วนนี้จะเป็นตาราง ของ user ทุกคน -->
 <table>
 
 <thead>
@@ -19,21 +19,26 @@
 <tbody>
     
 <?php
-
+// ในส่วนนี้คือ การเชื่อมต่อ ข้อมูล database ของ sql
+// ในส่วนพวก $row['ตัวแปร'] จะดึงพวก ข้อมูล ตัวแปร ต่างๆใน table ออกมา และแสดงออกมา่ใน <td> ที่ใส่ row วางไว้
+// และ
+// ในส่วน ปุ่มจะมีการเชื่อม sweetalert2 วางไว้ เพื่อ กดยืนยัน และจะใช้ window.href เข้าช่วย link?ชื่อตัวแปร=ตัวแปรที่ใส่
 $db = mysqli_connect('localhost', 'root', '', 'database');
 
 
 
-
+// ในส่วนนี้คือ การดึง ข้อมูล users ของ database ของ sql
 $query = "SELECT * FROM users";
 $result = mysqli_query($db, $query);
 
+// ในส่วนนี้คือ การเช็คข้อมูลใน sql ถ้ามีมากกว่า 0 จะแสดงขึ้นมา
 if(mysqli_num_rows($result) > 0 ) {
 while ($row = mysqli_fetch_assoc($result)) {
 echo '
 <tr>
 
-    <td>'.$row['id'].'</td>
+    <td>'.
+    $row['id'].'</td>
 
     <td>'.$row['email'].'</td>
 
@@ -160,6 +165,8 @@ echo '
 // $columtable = $_GET['columtable'];
 // $incolumntable = $_GET['incolumntable'];
 
+// ในส่วน คือส่วนที่จะใช้ function เข้าไปในปุ่มเพื่อไปหน้าต่อไป
+
 update_point = (incolumntable, id) => {
 window.location.href = `../flukky_project/backend/update_sql_table_users_point.php?id=${id}&incolumntable=${incolumntable}`;
 }
@@ -167,7 +174,10 @@ window.location.href = `../flukky_project/backend/update_sql_table_users_point.p
 update_group = (id, selectedOption) => {
 window.location.href = `../flukky_project/backend/update_sql_table_users_group.php?id=${id}&group=${selectedOption}`;
 }
+
+
 update_name = (id) => {
+  // ในส่วน คือส่วนที่จะให้เลือกระหว่าง user กับ admin เป็นปุ่มๆไว้เพื่อให้ง่าย
 Swal.fire({
 title: `เปลี่ยนชื่อ user`,
 html: `<input type="text" id="newnickname" class="swal2-input" placeholder="Name">`,

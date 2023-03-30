@@ -1,14 +1,16 @@
 <?php
-	
+	// ในส่วนนี้คือโค้ดการทำงานให้ส่งข้อควมผ่านไลน์
     function line_notify ($username, $price_value, $slip) {
         ini_set('display_errors', 1);
 	    ini_set('display_startup_errors', 1);
 	    error_reporting(E_ALL);
 	    date_default_timezone_set("Asia/Bangkok");
     
-	    $sToken = "KT9T9s6ozniDMhbpCBvY5JIVR6iMUx1NBsn9Vx9P53m";
-	    $sMessage = " ได้ทำรายการชำระเงินโปรดตรวจสอบ";
+		
+	    $sToken = "KT9T9s6ozniDMhbpCBvY5JIVR6iMUx1NBsn9Vx9P53m"; // ในส่วนนี้คือ การเอา Token ของไลน์
+	    $sMessage = " ได้ทำรายการชำระเงินโปรดตรวจสอบ"; // ในส่วนนี้คือ ข้อความที่จะส่ง
 
+		// ในส่วนนี้คือ จะคำนวณตาม ค่า ว่า เป็น พัน หมื่น แสน ล้าน
 		if ($price_value >= 1000000) {
             $User = 'User : ' . $username . ':     ราคา ' . $price_value/1000000 . 'ล้าน บาท';
         }
@@ -25,7 +27,7 @@
 			$User = 'User : ' . $username . ':     ราคา ' . $price_value . ' บาท';
 		}
     
-
+        // ในส่วนนี้คือ การเอาภาพที่ได้จากการอัพโหลด คือในส่วนนี้ จะส่งเข้าไปในไลน์
 		$imageFile = new CURLFile($slip);
 		$data = array(
 			'message' => $User . $sMessage,

@@ -21,3 +21,5 @@ Youtube : Devbanban
 แต่ใน อนาคต อาจจะซ้ำรูปเก่าไม่ได้ และจะเพิ่ม เลขอ้างอิงเข้ามาเพื่อ ง่ายต่อการตรวจสอบไม่ให้ซ้ำ ทั้งหมดก็มีเท่านี้
 
 ย่อง่ายๆก็คือ เว็บขายของ และโชผลงาน ไปในตัว
+
+Preview: https://www.youtube.com/watch?v=hgJtpN-ET98&t=4s&ab_channel=FlukKieWittawinChadasin
